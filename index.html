@@ -1,0 +1,1310 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Paper Rings 💍</title>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+
+
+<style>
+
+*{
+
+  margin:0;
+
+  padding:0;
+
+  box-sizing:border-box;
+
+}
+
+
+body{
+
+  background:linear-gradient(180deg,#ffe6ef,#ffd1e3,#fff5d6);
+
+  min-height:100vh;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  overflow:hidden;
+
+  font-family:'Inter',sans-serif;
+
+  color:#5a2a3c;
+
+}
+
+
+body::after{
+
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  background:
+
+    radial-gradient(circle at 20% 30%,rgba(255,182,193,.25) 2px,transparent 3px),
+
+    radial-gradient(circle at 80% 60%,rgba(255,215,0,.25) 2px,transparent 3px);
+
+  background-size:40px 40px;
+
+  pointer-events:none;
+
+}
+
+
+#fireworks{
+
+  position:fixed;
+
+  top:0;
+
+  left:0;
+
+  width:100%;
+
+  height:100%;
+
+  pointer-events:none;
+
+  z-index:5;
+
+}
+
+
+.container{
+
+  text-align:center;
+
+  position:relative;
+
+  z-index:10;
+
+}
+
+
+.pin-screen{
+
+  background:#fff;
+
+  padding:36px 30px;
+
+  border-radius:26px;
+
+  width:320px;
+
+  box-shadow:0 25px 50px rgba(0,0,0,.2);
+
+}
+
+
+.pin-screen h2{
+
+  font-family:'Playfair Display',serif;
+
+  font-style:italic;
+
+  font-size:30px;
+
+  color:#d63384;
+
+  margin-bottom:6px;
+
+}
+
+
+.pin-screen p{
+
+  font-size:13px;
+
+  color:#8b4a63;
+
+  margin-bottom:14px;
+
+}
+
+
+.pin-display{
+
+  width:180px;
+
+  height:42px;
+
+  margin:16px auto 22px;
+
+  border-radius:14px;
+
+  background:#ffe9f2;
+
+  font-size:22px;
+
+  letter-spacing:10px;
+
+  line-height:42px;
+
+  color:#d63384;
+
+}
+
+
+.pin{
+
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:14px;
+
+  justify-items:center;
+
+}
+
+
+.pin button{
+
+  width:62px;
+
+  height:62px;
+
+  border-radius:50%;
+
+  border:none;
+
+  background:linear-gradient(145deg,#ffb6c1,#ff8fab);
+
+  color:#5a2a3c;
+
+  font-size:20px;
+
+  cursor:pointer;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  box-shadow:0 8px 16px rgba(0,0,0,.25);
+
+  transition:.25s;
+
+}
+
+
+.pin button:hover{
+
+  transform:scale(1.12) rotate(5deg);
+
+}
+
+
+.enter-btn{
+
+  margin-top:22px;
+
+  padding:14px 42px;
+
+  font-size:15px;
+
+  border-radius:22px;
+
+  border:none;
+
+  background:linear-gradient(135deg,#ffd966,#ffb703);
+
+  color:#5a2a3c;
+
+  cursor:pointer;
+
+  letter-spacing:1px;
+
+  box-shadow:0 10px 22px rgba(0,0,0,.25);
+
+  transition:.25s;
+
+}
+
+
+.enter-btn:hover{
+
+  transform:scale(1.05);
+
+}
+
+
+.envelope{
+
+  display:none;
+
+  width:270px;
+
+  height:165px;
+
+  background:#fff;
+
+  margin:auto;
+
+  border-radius:14px;
+
+  position:relative;
+
+  cursor:pointer;
+
+  box-shadow:0 25px 45px rgba(0,0,0,.3);
+
+  animation:bounce 2.2s infinite;
+
+}
+
+
+@keyframes bounce{
+
+  0%,100%{
+
+    transform:translateY(0);
+
+  }
+
+
+  50%{
+
+    transform:translateY(-6px);
+
+  }
+
+}
+
+
+.envelope::before{
+
+  content:"";
+
+  position:absolute;
+
+  top:0;
+
+  left:0;
+
+  width:0;
+
+  height:0;
+
+  border-left:135px solid transparent;
+
+  border-right:135px solid transparent;
+
+  border-top:85px solid #ffd1e3;
+
+}
+
+
+.envelope span{
+
+  position:absolute;
+
+  top:50%;
+
+  left:50%;
+
+  transform:translate(-50%,-50%);
+
+  font-size:30px;
+
+}
+
+
+.letter{
+
+  display:none;
+
+  background:#fff;
+
+  padding:28px;
+
+  width:390px;
+
+  max-width:92vw;
+
+  max-height:90vh;
+
+  overflow-y:auto;
+
+  border-radius:26px;
+
+  box-shadow:0 30px 60px rgba(0,0,0,.35);
+
+  animation:slideUp 1s ease forwards;
+
+  position:relative;
+
+  z-index:10;
+
+}
+
+
+.letter h3{
+
+  font-family:'Playfair Display',serif;
+
+  font-style:italic;
+
+  font-size:27px;
+
+  color:#d63384;
+
+  margin-bottom:18px;
+
+}
+
+
+.photo-card{
+
+  width:100%;
+
+  background:linear-gradient(145deg,#fff5f9,#ffe4ef);
+
+  padding:10px;
+
+  border-radius:20px;
+
+  box-shadow:
+
+    0 12px 25px rgba(214,51,132,.18),
+
+    inset 0 0 0 1px rgba(214,51,132,.08);
+
+  margin:0 auto 20px;
+
+  cursor:pointer;
+
+  transition:.3s ease;
+
+}
+
+
+.photo-card:hover{
+
+  transform:translateY(-4px);
+
+  box-shadow:0 16px 30px rgba(214,51,132,.25);
+
+}
+
+
+.photo-card img{
+
+  display:block;
+
+  width:100%;
+
+  height:260px;
+
+  object-fit:cover;
+
+  border-radius:15px;
+
+}
+
+
+.photo-caption{
+
+  font-family:'Playfair Display',serif;
+
+  font-style:italic;
+
+  color:#d63384;
+
+  font-size:15px;
+
+  padding:10px 5px 4px;
+
+}
+
+
+.letter p{
+
+  font-size:14px;
+
+  line-height:1.75;
+
+  color:#5a2a3c;
+
+  text-align:left;
+
+}
+
+
+#typewriter::after{
+
+  content:"|";
+
+  margin-left:4px;
+
+  animation:blink 1s infinite;
+
+}
+
+
+@keyframes blink{
+
+  0%,50%{
+
+    opacity:1;
+
+  }
+
+
+  51%,100%{
+
+    opacity:0;
+
+  }
+
+}
+
+
+.image-viewer{
+
+  display:none;
+
+  position:fixed;
+
+  inset:0;
+
+  background:rgba(45,15,30,.88);
+
+  z-index:100;
+
+  justify-content:center;
+
+  align-items:center;
+
+  padding:25px;
+
+  backdrop-filter:blur(5px);
+
+}
+
+
+.image-viewer img{
+
+  max-width:95%;
+
+  max-height:88vh;
+
+  object-fit:contain;
+
+  border-radius:18px;
+
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+
+  animation:imageZoom .35s ease;
+
+}
+
+
+.close-image{
+
+  position:absolute;
+
+  top:20px;
+
+  right:25px;
+
+  width:45px;
+
+  height:45px;
+
+  border:none;
+
+  border-radius:50%;
+
+  background:#fff;
+
+  color:#d63384;
+
+  font-size:25px;
+
+  cursor:pointer;
+
+  box-shadow:0 5px 15px rgba(0,0,0,.3);
+
+}
+
+
+@keyframes imageZoom{
+
+  from{
+
+    transform:scale(.7);
+
+    opacity:0;
+
+  }
+
+
+  to{
+
+    transform:scale(1);
+
+    opacity:1;
+
+  }
+
+}
+
+
+@keyframes slideUp{
+
+  from{
+
+    transform:translateY(90px);
+
+    opacity:0;
+
+  }
+
+
+  to{
+
+    transform:translateY(0);
+
+    opacity:1;
+
+  }
+
+}
+
+
+@media(max-width:500px){
+
+  .pin-screen{
+
+    width:300px;
+
+    padding:30px 24px;
+
+  }
+
+
+  .letter{
+
+    width:92vw;
+
+    padding:22px;
+
+  }
+
+
+  .letter h3{
+
+    font-size:24px;
+
+  }
+
+
+  .photo-card img{
+
+    height:230px;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<canvas id="fireworks"></canvas>
+
+
+<div class="container">
+
+
+<div class="pin-screen" id="pinScreen">
+
+
+<h2>Happy 3rd monthsarry loveyyy</h2>
+
+
+<p></p>
+
+
+<div class="pin-display" id="pinDisplay"></div>
+
+
+<div class="pin">
+
+
+<button onclick="addPin(1)">1</button>
+
+<button onclick="addPin(2)">2</button>
+
+<button onclick="addPin(3)">3</button>
+
+
+<button onclick="addPin(4)">4</button>
+
+<button onclick="addPin(5)">5</button>
+
+<button onclick="addPin(6)">6</button>
+
+
+<button onclick="addPin(7)">7</button>
+
+<button onclick="addPin(8)">8</button>
+
+<button onclick="addPin(9)">9</button>
+
+
+<button onclick="clearPin()">⌫</button>
+
+<button onclick="addPin(0)">0</button>
+
+
+</div>
+
+
+<button class="enter-btn" onclick="checkPin()">
+
+iloveyouu🥰
+
+</button>
+
+
+</div>
+
+
+<div class="envelope" id="envelope" onclick="openLetter()">
+
+<span>💍</span>
+
+</div>
+
+
+<div class="letter" id="letter">
+
+
+<h3>
+
+being with you feels like home
+
+</h3>
+
+
+<div class="photo-card" onclick="openImage()">
+
+
+<img
+
+src="our-photo.jpg"
+
+alt="Our special memory"
+
+>
+
+
+<div class="photo-caption">
+
+one of my favorite memories with you 🤍
+
+</div>
+
+
+</div>
+
+
+<p id="typewriter"></p>
+
+
+<button
+
+id="nextBtn"
+
+class="enter-btn"
+
+style="display:none;margin-top:20px;"
+
+onclick="nextMessage()">
+
+Next 💛
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+<div class="image-viewer" id="imageViewer">
+
+
+<button class="close-image" onclick="closeImage()">
+
+×
+
+</button>
+
+
+<img
+
+src="kyutt.jpg"
+
+alt="Expanded photo"
+
+>
+
+
+</div>
+
+
+<audio
+
+id="music"
+
+src="love.mp3"
+
+loop>
+
+</audio>
+
+
+<script>
+
+
+let pin = "";
+
+
+const correctPin = "0612";
+
+
+const messages = [
+
+
+`
+
+Happy 3rd monthsary loveyyy😘 thankyou for all the sacrifice you gave to me, God truly blessed me with you. In a world full of chaos, you are my peace, my comfort, and my light. I don't know what I did to deserve you, but I'll spend forever loving you with all that I am no matter what, I will always hold you close, cherish you and stand by your side. You are my greatest privilege, my answered prayer and the love I never knew I needed but now can't imagine my life without you. Im sorry if there were a times i made you feel unloved or hard to understand, i know I'm not always the best at handling problems or expressing myself properly, and sometimes i end up hurting you without meaning to, but please known that none of it comes from a lack of love,  I'll try to understand my actions more, im truly sorry whatever i did. I may not always get things right, but I've always been sincere with you, I'm still learning, still growing and still trying to become better for you and for us. Thankyou sa pagmamahal na walang kapalit loveyyy🥺. I dont know what my future holds pero umaasa ako na ikaw ang kasama ko doon. Hindi ko alam kung ano ang naghihintay sa atin pero sigurado ako sa isang bagay i’m praying you're in it. Sa bawat pag pikit ko, iniisip ko kung anong klaseng mundo ang bubuksan ng tadhana para sa akin will it be kind? Will be cruel? Pero kahit ano payan ikaw ang gusto kong kasama. I know life is a series of questions without answers parang pelikulang walang script. But if there's one thing i’d bet my heart on, itss youu sa lahat ng hindi sigurado, ikaw ang bagay na gusto kong pang hawakan i dont just want a future, I want your Future. And im praying hoping and Fighting that your in it. 
+hinding-hindi ako mag sasawang mag thankyou sa lahat ng pagmamahal na binibigay mo sakin🥺, palagi mo pong tandaan na hindi ako aalis sa tabi mo. kahit anong pagsubok ang dumating, hinding hindi kita iiwan. nandito po ako oara samahan ka sa hirap at ginhawa, sa lungkot at saya. lagi kong pipiliin na mahalin ka at paramdam sayo na sapat ka, at may taong handng lumaban para sayo. hanggang sa huli ikaw lng ang gusto kong makasama. happy monthsary ulit loveyyy iloveyousomuchhh🥺🫶❤️‍🩹
+
+`
+
+
+];
+
+
+let currentMessage = 0;
+
+let index = 0;
+
+
+const pinScreen =
+
+document.getElementById("pinScreen");
+
+
+const envelope =
+
+document.getElementById("envelope");
+
+
+const letter =
+
+document.getElementById("letter");
+
+
+const music =
+
+document.getElementById("music");
+
+
+function typeText(){
+
+
+const el =
+
+document.getElementById("typewriter");
+
+
+const text =
+
+messages[currentMessage];
+
+
+if(index < text.length){
+
+
+el.innerHTML +=
+
+text[index] === "\n"
+
+? "<br>"
+
+: text[index];
+
+
+index++;
+
+
+setTimeout(typeText,10);
+
+
+}else{
+
+
+if(currentMessage < messages.length - 1){
+
+
+document.getElementById("nextBtn")
+
+.style.display = "inline-block";
+
+
+}else{
+
+
+document.getElementById("nextBtn")
+
+.style.display = "none";
+
+
+}
+
+
+}
+
+
+}
+
+
+function addPin(num){
+
+
+if(pin.length < 4){
+
+
+pin += num;
+
+
+updateDisplay();
+
+
+}
+
+
+}
+
+
+function clearPin(){
+
+
+pin = "";
+
+
+updateDisplay();
+
+
+}
+
+
+function updateDisplay(){
+
+
+document.getElementById("pinDisplay")
+
+.textContent =
+
+pin === ""
+
+? ""
+
+: "•".repeat(pin.length);
+
+
+}
+
+
+function checkPin(){
+
+
+if(pin === correctPin){
+
+
+pinScreen.style.display = "none";
+
+
+envelope.style.display = "block";
+
+
+}else{
+
+
+alert("di ka magaling manghula💅 💕");
+
+
+clearPin();
+
+
+}
+
+
+}
+
+
+function openLetter(){
+
+
+envelope.style.display = "none";
+
+
+letter.style.display = "block";
+
+
+music.play().catch(()=>{});
+
+
+startFireworks();
+
+
+currentMessage = 0;
+
+
+index = 0;
+
+
+document.getElementById("typewriter")
+
+.innerHTML = "";
+
+
+document.getElementById("nextBtn")
+
+.style.display = "none";
+
+
+typeText();
+
+
+}
+
+
+function openImage(){
+
+
+document.getElementById("imageViewer")
+
+.style.display = "flex";
+
+
+}
+
+
+function closeImage(){
+
+
+document.getElementById("imageViewer")
+
+.style.display = "none";
+
+
+}
+
+
+document.getElementById("imageViewer")
+
+.addEventListener("click",function(event){
+
+
+if(event.target === this){
+
+
+closeImage();
+
+
+}
+
+
+});
+
+
+const canvas =
+
+document.getElementById("fireworks");
+
+
+const ctx =
+
+canvas.getContext("2d");
+
+
+function resizeCanvas(){
+
+
+canvas.width = innerWidth;
+
+
+canvas.height = innerHeight;
+
+
+}
+
+
+resizeCanvas();
+
+
+addEventListener(
+
+"resize",
+
+resizeCanvas
+
+);
+
+
+function firework(){
+
+
+const x =
+
+Math.random() * canvas.width;
+
+
+const y =
+
+Math.random() *
+
+canvas.height *
+
+.5;
+
+
+const particles = [];
+
+
+for(let i = 0; i < 40; i++){
+
+
+particles.push({
+
+
+x,
+
+y,
+
+
+dx:
+
+Math.cos(
+
+Math.random() *
+
+Math.PI * 2
+
+) *
+
+(Math.random() * 3 + 1),
+
+
+dy:
+
+Math.sin(
+
+Math.random() *
+
+Math.PI * 2
+
+) *
+
+(Math.random() * 3 + 1),
+
+
+life:60,
+
+
+color:[
+
+"#ffb6c1",
+
+"#ffd966",
+
+"#fff",
+
+"#ff8fab"
+
+][
+
+Math.floor(
+
+Math.random() * 4
+
+)
+
+]
+
+
+});
+
+
+}
+
+
+function animate(){
+
+
+ctx.clearRect(
+
+0,
+
+0,
+
+canvas.width,
+
+canvas.height
+
+);
+
+
+particles.forEach(p=>{
+
+
+if(p.life > 0){
+
+
+ctx.fillStyle = p.color;
+
+
+ctx.fillRect(
+
+p.x,
+
+p.y,
+
+3,
+
+3
+
+);
+
+
+p.x += p.dx;
+
+
+p.y += p.dy;
+
+
+p.life--;
+
+
+}
+
+
+});
+
+
+if(
+
+particles.some(
+
+p => p.life > 0
+
+)
+
+){
+
+
+requestAnimationFrame(
+
+animate
+
+);
+
+
+}
+
+
+}
+
+
+animate();
+
+
+}
+
+
+let fireworksStarted = false;
+
+
+function startFireworks(){
+
+
+if(fireworksStarted) return;
+
+
+fireworksStarted = true;
+
+
+setInterval(
+
+firework,
+
+700
+
+);
+
+
+}
+
+
+function nextMessage(){
+
+
+currentMessage++;
+
+
+index = 0;
+
+
+document.getElementById("typewriter")
+
+.innerHTML = "";
+
+
+document.getElementById("nextBtn")
+
+.style.display = "none";
+
+
+typeText();
+
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
